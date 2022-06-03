@@ -9,11 +9,12 @@ const PokemonLoadingSkeleton = ({ PokemonComponent, name }) => {
         component="div"
         sx={{
           p: 2,
-          border: "1px dashed grey",
+          border: "1px dashed white",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          backgroundColor: "rgb(255, 108, 108)",
         }}
       >
         {PokemonComponent ? PokemonComponent : `Loading ${name}...`}

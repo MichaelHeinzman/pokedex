@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import useSWR from "swr";
 import PokemonLoadingSkeleton from "../Pokemon/PokemonLoadingSkeleton";
 import Pokemon from "../Pokemon/Pokemon";
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 
 const Pokedex = () => {
   const {
@@ -11,7 +11,9 @@ const Pokedex = () => {
 
   return (
     <>
-      <h2>Pokedex</h2>
+      <Typography variant="h1" component="h2" color="white">
+        Pokedex
+      </Typography>
       <Grid
         container
         justifyContent="center"

@@ -1,11 +1,17 @@
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import React, { Suspense } from "react";
 import Pokedex from "./Pokedex";
 
 const PokedexContainer = () => {
   return (
     <Grid container justifyContent="center" alignItems="center">
-      <Suspense fallback={<h2>Loading Pokedex...</h2>}>
+      <Suspense
+        fallback={
+          <Typography variant="h2" component="h3" color="white">
+            Loading Pokedex...
+          </Typography>
+        }
+      >
         <Pokedex />
       </Suspense>
     </Grid>

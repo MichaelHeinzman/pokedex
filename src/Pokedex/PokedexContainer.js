@@ -4,7 +4,12 @@ import Pokedex from "./Pokedex";
 
 const PokedexContainer = () => {
   return (
-    <Grid container justifyContent="center" alignItems="center">
+    <Grid
+      container
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+    >
       <Suspense
         fallback={
           <Typography variant="h2" component="h3" color="white">

@@ -15,9 +15,7 @@ const Pokemon = ({ name }) => {
       <Typography variant="h5" color="white">
         {name} #{id}
       </Typography>
-
       <PokemonTypes types={pokemonTypes} />
-
       <img src={sprites.front_default} alt={name} />
     </>
   );

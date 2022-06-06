@@ -4,11 +4,12 @@ import React from "react";
 
 const PokemonLoadingSkeleton = ({ PokemonComponent, name }) => {
   return (
-    <Grid item xs={2} sm={4} md={4}>
+    <Grid item xs={11} sm={4} md={4}>
       <Box
         component="div"
         sx={{
-          p: 2,
+          p: 1,
+          height: 200,
           border: "1px dashed white",
           display: "flex",
           flexDirection: "column",

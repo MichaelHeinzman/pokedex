@@ -4,26 +4,25 @@ import React, { useEffect } from "react";
 import backgroundImages from "./pokemonBackgroundImages";
 
 const PokemonTypes = ({ types, setImage, image }) => {
-  const checkType = (type) => {
-    if (type === "fire") return "orange";
-    if (type === "grass") return "green";
-    if (type === "water") return "#1C4CBD";
-    if (type === "flying") return "#5EBDFC";
-    if (type === "poison") return "purple";
-    if (type === "bug") return "darkgreen";
-    if (type === "dragon") return "darkblue";
-    if (type === "electric") return "yellow";
-    if (type === "ground") return "#EE6B2F";
-    if (type === "dragon") return "darkblue";
-    if (type === "fairy") return "pink";
-    if (type === "fighting") return "#CE2211";
-    if (type === "psychic") return "red";
-    if (type === "ice") return "#16D6FB";
-    if (type === "rock") return "tan";
-    if (type === "dark") return "darkbrown";
-    if (type === "steel") return "silver";
-    if (type === "ghost") return "lightpurple";
-    return "grey";
+  const typeColors = {
+    fire: "orange",
+    grass: "green",
+    water: "#1c4cbd",
+    flying: "#5ebdfc",
+    poison: "purple",
+    bug: "darkgreen",
+    dragon: "darkblue",
+    electric: "yellow",
+    ground: "#ee6b2f",
+    fairy: "pink",
+    fighting: "#ce2211",
+    psychic: "red",
+    ice: "#16d6fb",
+    rock: "tan",
+    dark: "darkbrown",
+    steel: "silver",
+    ghost: "#301934",
+    normal: "grey",
   };
 
   useEffect(() => {
@@ -33,7 +32,7 @@ const PokemonTypes = ({ types, setImage, image }) => {
   return (
     <Grid container justifyContent="center" alignItems="center" gap={1}>
       {types.map((type, index) => {
-        const color = checkType(type);
+        const color = typeColors[type];
         return (
           <Box
             key={index}

@@ -8,8 +8,7 @@ const PokemonLoadingSkeleton = ({ PokemonComponent, name }) => {
       <Box
         component="div"
         sx={{
-          p: 1,
-          border: "1px dashed white",
+          overflow: "hidden",
           height: "100%",
           width: "100%",
           display: "flex",
@@ -17,6 +16,7 @@ const PokemonLoadingSkeleton = ({ PokemonComponent, name }) => {
           justifyContent: "center",
           alignItems: "center",
           backgroundColor: "rgb(255, 108, 108)",
+          cursor: "pointer",
           "&:hover": {
             transform: "scale(1.02)",
           },

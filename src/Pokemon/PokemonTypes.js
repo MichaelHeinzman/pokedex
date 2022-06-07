@@ -1,8 +1,9 @@
 import { Grid } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useEffect } from "react";
+import backgroundImages from "./pokemonBackgroundImages";
 
-const PokemonTypes = ({ types }) => {
+const PokemonTypes = ({ types, setImage, image }) => {
   const checkType = (type) => {
     if (type === "fire") return "orange";
     if (type === "grass") return "green";
@@ -25,11 +26,14 @@ const PokemonTypes = ({ types }) => {
     return "grey";
   };
 
+  useEffect(() => {
+    types.map((type) => image === "" && setImage(backgroundImages[type]));
+  }, [image, setImage, types]);
+
   return (
     <Grid container justifyContent="center" alignItems="center" gap={1}>
       {types.map((type, index) => {
         const color = checkType(type);
-
         return (
           <Box
             key={index}

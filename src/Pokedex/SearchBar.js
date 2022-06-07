@@ -1,28 +1,36 @@
 import { Grid, TextField } from "@mui/material";
 import React from "react";
 
-const SearchPokedex = ({ setSearchValue }) => {
+const SearchBar = ({
+  setSearchValue,
+  borderColor,
+  inputColor,
+  labelColor,
+  focusedBorderColor,
+  focusedInputColor,
+  textValue,
+}) => {
   const searchBarChanged = (e) => setSearchValue(e.target.value.toLowerCase());
   return (
     <Grid container justifyContent="center" alignItems="center">
       <Grid item xs={6}>
         <TextField
-          label="Search Pokedex"
+          label={textValue}
           variant="outlined"
           sx={{
             width: "100%",
-            "& .MuiInputLabel-root": { color: "white" }, //styles the label
-            "& .MuiInputLabel-root.Mui-focused": { color: "white" },
+            "& .MuiInputLabel-root": { color: inputColor }, //styles the label
+            "& .MuiInputLabel-root.Mui-focused": { color: focusedInputColor },
             "& .MuiOutlinedInput-root": {
-              "& > fieldset": { borderColor: "white" },
+              "& > fieldset": { borderColor: borderColor },
             },
             "& .MuiOutlinedInput-root.Mui-focused": {
               "& > fieldset": {
-                borderColor: "rgb(255, 108, 108)",
+                borderColor: focusedBorderColor,
               },
             },
-            input: { color: "white" },
-            label: { color: "white" },
+            input: { color: inputColor },
+            label: { color: labelColor },
           }}
           onChange={searchBarChanged}
         />
@@ -31,4 +39,4 @@ const SearchPokedex = ({ setSearchValue }) => {
   );
 };
 
-export default SearchPokedex;
+export default SearchBar;

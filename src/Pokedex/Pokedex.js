@@ -1,31 +1,56 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useMemo, useState } from "react";
 import useSWR from "swr";
 import PokemonLoadingSkeleton from "../Pokemon/PokemonLoadingSkeleton";
 import Pokemon from "../Pokemon/Pokemon";
 import { Grid, Typography } from "@mui/material";
-import SearchPokedex from "./SearchPokedex";
+import SearchBar from "./SearchBar";
 
 const Pokedex = () => {
-  let {
+  const {
     data: { results },
   } = useSWR("https://pokeapi.co/api/v2/pokemon?limit=151");
-
   const [searchValue, setSearchValue] = useState("");
-  if (searchValue !== "")
-    results = results.filter(
-      (pokemon, index) =>
-        pokemon.name.includes(searchValue) ||
-        (index + 1).toString().includes(searchValue)
-    );
+
+  // Filters results and uses the hook useMemo to prevent rerendering
+  // except when someone types in the search bar or results change.
+  const filteredResults = useMemo(
+    () =>
+      results.filter((pokemon, index) => {
+        console.log("Hello");
+        return (
+          (searchValue !== "" && pokemon.name.includes(searchValue)) ||
+          (index + 1).toString().includes(searchValue)
+        );
+      }),
+    [results, searchValue]
+  );
+
+  // Maps through the filtered list and loads pokemon data using Suspense fallback.
+  const buildPokemonList = (filteredResults) =>
+    filteredResults.map((pokemon, index) => (
+      <Suspense key={index} fallback={<PokemonLoadingSkeleton {...pokemon} />}>
+        <PokemonLoadingSkeleton
+          PokemonComponent={<Pokemon key={pokemon.name} {...pokemon} />}
+        />
+      </Suspense>
+    ));
+
+  const searchBarInputs = {
+    setSearchValue: setSearchValue,
+    borderColor: "white",
+    inputColor: "white",
+    labelColor: "white",
+    focusedBorderColor: "rgb(255, 108, 108)",
+    focusedInputColor: "white",
+    textValue: "Search Pokedex",
+  };
 
   return (
     <>
       <Typography variant="h1" component="h2" color="white">
         Pokedex
       </Typography>
-
-      <SearchPokedex setSearchValue={setSearchValue} />
-
+      <SearchBar {...searchBarInputs} />
       <Grid
         container
         justifyContent="center"
@@ -34,16 +59,7 @@ const Pokedex = () => {
         columns={{ xs: 4, sm: 8, md: 12 }}
         padding={5}
       >
-        {results.map((pokemon, index) => (
-          <Suspense
-            key={index}
-            fallback={<PokemonLoadingSkeleton {...pokemon} />}
-          >
-            <PokemonLoadingSkeleton
-              PokemonComponent={<Pokemon {...pokemon} />}
-            />
-          </Suspense>
-        ))}
+        {buildPokemonList(filteredResults)}
       </Grid>
     </>
   );

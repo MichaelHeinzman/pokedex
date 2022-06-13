@@ -2,6 +2,7 @@ import { Grid } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect } from "react";
 import backgroundImages from "./pokemonBackgroundImages";
+import PropTypes from "prop-types";
 
 const PokemonTypes = ({ types, setImage, image }) => {
   const typeColors = {
@@ -55,4 +56,17 @@ const PokemonTypes = ({ types, setImage, image }) => {
     </Grid>
   );
 };
+
+PokemonTypes.defaultProps = {
+  types: [],
+  setImage: () => {},
+  image: "",
+};
+
+PokemonTypes.propTypes = {
+  types: PropTypes.array,
+  setImage: PropTypes.func,
+  image: PropTypes.string,
+};
+
 export default PokemonTypes;

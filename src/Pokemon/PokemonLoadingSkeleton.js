@@ -1,7 +1,8 @@
 import { Grid } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-
+import PropTypes from "prop-types";
+import Pokemon from "./Pokemon";
 const PokemonLoadingSkeleton = ({ PokemonComponent, name }) => {
   return (
     <Grid item xs={11} sm={4} md={2} gridTemplateColumns="repeat(5, 1fr)">
@@ -26,6 +27,15 @@ const PokemonLoadingSkeleton = ({ PokemonComponent, name }) => {
       </Box>
     </Grid>
   );
+};
+PokemonLoadingSkeleton.defaultProps = {
+  name: "",
+  PokemonComponent: <Pokemon />,
+};
+
+PokemonLoadingSkeleton.propTypes = {
+  name: PropTypes.string,
+  PokemonComponent: PropTypes.element,
 };
 
 export default PokemonLoadingSkeleton;

@@ -1,5 +1,6 @@
 import { Grid, TextField } from "@mui/material";
 import React from "react";
+import PropTypes from "prop-types";
 
 const SearchBar = ({
   setSearchValue,
@@ -39,4 +40,23 @@ const SearchBar = ({
   );
 };
 
+SearchBar.defaultProps = {
+  setSearchValue: () => {},
+  borderColor: "",
+  inputColor: "",
+  labelColor: "",
+  focusedBorderColor: "",
+  focusedInputColor: "",
+  textValue: "",
+};
+
+SearchBar.propTypes = {
+  setSearchValue: PropTypes.func,
+  borderColor: PropTypes.string,
+  inputColor: PropTypes.string,
+  labelColor: PropTypes.string,
+  focusedBorderColor: PropTypes.string,
+  focusedInputColor: PropTypes.string,
+  textValue: PropTypes.string,
+};
 export default SearchBar;

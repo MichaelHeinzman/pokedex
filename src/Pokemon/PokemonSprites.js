@@ -1,4 +1,5 @@
 import { Grid } from "@mui/material";
+import PropTypes from "prop-types";
 
 const PokemonSprites = ({ sprites }) => {
   return (
@@ -8,6 +9,14 @@ const PokemonSprites = ({ sprites }) => {
       })}
     </Grid>
   );
+};
+
+PokemonSprites.defaultProps = {
+  sprites: {},
+};
+
+PokemonSprites.propTypes = {
+  sprites: PropTypes.object,
 };
 
 export default PokemonSprites;
